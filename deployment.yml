@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nodejs
-        image: docker.registry.local:5000/nodejs:v1.42
+        image: docker.registry.local:5000/nodejs:v1.${BUILD_NUMBER}
         ports:
         - containerPort: 8081
 
