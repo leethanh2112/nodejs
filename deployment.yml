@@ -8,14 +8,34 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: nodejs
+      app: nodejs
   replicas: 1
   template:
     metadata:
       labels:
-        run: nodejs
+        app: nodejs
     spec:
       containers:
       - name: nodejs
         image: docker.registry.local:5000/nodejs:v1.${BUILD_NUMBER}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nodejs
+  name: nodejs
+  namespace: default
+spec:
+  ports:
+  - name: 8081-8081
+    nodePort: 32230
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
+  selector:
+    app: nodejs
+  type: NodePort
+status:
+  loadBalancer: {}
 
