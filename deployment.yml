@@ -18,21 +18,4 @@ spec:
       containers:
       - name: nodejs
         image: docker.registry.local:5000/nodejs:v1.${BUILD_NUMBER}
-        ports:
-        - containerPort: 8081
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nodejs
-  namespace: default
-  labels:
-   app: nodejs
-spec:
-  type: NodePort
-  ports:
-    - targetPort: 8081
-      port: 8081
-  selector:
-    app: nodejs
 
