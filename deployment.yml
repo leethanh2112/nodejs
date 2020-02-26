@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nodejs
-  namespace: system-uat
+  namespace: default
   labels:
-   name: nodejs
+   app: nodejs
 spec:
   selector:
     matchLabels:
@@ -25,7 +25,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nodejs
-  namespace: system-uat
+  namespace: default
+  labels:
+   app: nodejs
 spec:
   type: NodePort
   ports:
